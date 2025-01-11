@@ -92,7 +92,7 @@ def download_audio(url):
         return None
 
 def launch_app():
-    clear
+    clear()
     print("\t\tYoutube Video Downloader")
     print("Note:")
     print("*As downloader combines audio and video in your device video download speed might be dependent on your internet and cpu.")
