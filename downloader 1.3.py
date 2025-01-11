@@ -39,7 +39,7 @@ def download_video(url,cleanup):
 
         # Download audio stream
         print(f"Downloading video: {video_stream.resolution}") 
-        video_path = video_stream.download(filename='video')
+        video_path = video_stream.download(filename=f'{yt.title}')
         print("Video downlaod completed") 
         print("Downloading audio") 
         audio_path = audio_stream.download(filename='audio')
@@ -49,12 +49,12 @@ def download_video(url,cleanup):
         video_clip = VideoFileClip(video_path)
         audio_clip = AudioFileClip(audio_path) 
         final_clip = video_clip.set_audio(audio_clip)
-        try:
-            final_clip.write_videofile(f"{yt.title}.mp4", codec='libx264 -c:v h264_nvenc', audio_codec='aac')
-        except Exception as e:
-            print("method 2",e)
-            #final_clip.write_videofile(f"{yt.title}.mp4", codec='libx264', audio_codec='aac')
+        name=yt.title.replace('|',' ')
+        print(name)
+        final_clip.write_videofile(filename=f"{name}.mp4", codec='libx264', audio_codec='aac')
+        #
         print("Download and combination completed!")
+       
     except Exception as e:
         print("Error detected \nError is:",e)
         return None
@@ -92,7 +92,7 @@ def download_audio(url):
         return None
 
 def launch_app():
-    clear()
+    clear
     print("\t\tYoutube Video Downloader")
     print("Note:")
     print("*As downloader combines audio and video in your device video download speed might be dependent on your internet and cpu.")
@@ -122,7 +122,7 @@ def launch_app():
             launch_app()
         case 2:
             url = input("Enter the YouTube video URL: ")
-            t1=threading.Thread(target=download_audio,args=(url))
+            t1=threading.Thread(target=download_audio,args=(url,))
             t1.start()
             t1.join()
             launch_app()
